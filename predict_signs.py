@@ -12,18 +12,10 @@ def main():
     parser = argparse.ArgumentParser(
         description="Detección de letras con YOLOv11 (imagen fija o cámara)")
     group = parser.add_mutually_exclusive_group(required=True)
-    group.add_argument(
-        "-i",
-        "--image",
-        action="store_true",
-        help="Procesar la imagen fija definida en el código",
-    )
-    group.add_argument(
-        "-v",
-        "--video",
-        action="store_true",
-        help="Abrir la cámara web y procesar el stream en vivo",
-    )
+    group.add_argument("-i", "--image",  action="store_true",
+                        help="Procesar la imagen fija definida en el código")
+    group.add_argument("-v", "--video",  action="store_true",
+                        help="Abrir la cámara web y procesar el stream en vivo")
     args = parser.parse_args()
 
     # ── 2) Configuración de dispositivo y modelo ────────────────
@@ -40,7 +32,7 @@ def main():
 
     # ── 3) Modo “imagen fija” ──────────────────────────────────
     if args.image:
-        src = r"C:\Users\Juanja Malo\Desktop\YOLOv11-SignDetect\data\test\images\A22_jpg.rf.f02ad8558ce1c88213b4f83c0bc66bc8.jpg"
+        src = "data/test/images/A22_jpg.rf.f02ad8558ce1c88213b4f83c0bc66bc8.jpg"
         results = model.predict(
             source=src,
             device=device,
@@ -55,7 +47,7 @@ def main():
         )
 
         print(f"\n-- Resultados para {os.path.basename(src)} --")
-        for r in results:  # en caso de vídeo habría varios frames
+        for r in results:
             for box in r.boxes:
                 cls = int(box.cls[0])
                 name = class_names[cls]
@@ -68,13 +60,12 @@ def main():
     # ── 4) Modo “cámara web” ────────────────────────────────────
     elif args.video:
         print("Abrindo cámara web. Pulsa 'q' para salir.")
-        # stream=True devuelve un generador de resultados
-        stream = model.stream(
-            source=0,              # 0 = primera cámara conectada
+        stream = model.predict(
+            source=0,
             device=device,
             imgsz=IMG_SIZE,
             conf=CONF_THRES,
-            save=False,            # no guarda cada frame en disco
+            stream=True
         )
 
         # Crear ventana OpenCV
