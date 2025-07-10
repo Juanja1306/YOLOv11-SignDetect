@@ -9,7 +9,7 @@ YOLOv11-SignDetect/
  ├─ .git/                 
  ├─ .gitattributes
  ├─ .gitignore
- ├─ .venv/                 # Entorno virtual (Python 3.12.6)
+ ├─ .venv/                 # Entorno virtual (Python 3.11)
  ├─ data/                  # Dataset y configuración
  │   ├─ American Sign Language Letters.v1-v1.yolov11.zip  # Dataset original
  │   ├─ train/              # Imágenes y etiquetas de entrenamiento
@@ -54,7 +54,7 @@ YOLOv11-SignDetect/
 ```
 
 ## Requisitos
-- Python 3.12
+- Python 3.11
 - (Opcional) CUDA/cuDNN para aceleración GPU
 - Dependencias especificadas en `requirements.txt`
 
