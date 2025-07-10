@@ -20,6 +20,7 @@ def main():
 
     # ── 2) Configuración de dispositivo y modelo ────────────────
     device = "cuda:0" if torch.cuda.is_available() else "cpu"
+    # device = "cpu"
     print(f"Usando dispositivo: {device}")
 
     model = YOLO("runs/train/sign_detect_nano/weights/best.pt")
