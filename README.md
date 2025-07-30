@@ -76,6 +76,9 @@ pip install -r requirements.txt
 ```
 
 ## Preparación de datos
+
+> Descargar de `https://public.roboflow.com/object-detection/american-sign-language-letters`
+
 1. Descomprimir el dataset:
    ```bash
    unzip data/"American Sign Language Letters.v1-v1.yolov11.zip" -d data
